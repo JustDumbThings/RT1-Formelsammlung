@@ -193,19 +193,19 @@ $ T_"RK" = "größte Systemzeitkonstante" \/ "langsamste Polstelle" $
   columns: (auto, 1fr),
   align: (center, left),
   [*Symbol*], [*Bedeutung / Funktion*],
-  [$K_P$], [**Proportionalbeiwert (Reglerverstärkung):** Bestimmt die Stärke des direkten, proportionalen Eingriffs.],
-  [$K_I$], [**Integrationsbeiwert:** Verstärkungsfaktor des I-Anteils.],
-  [$T_N$], [**Nachstellzeit:** Bestimmt das Gewicht des I-Anteils. Je kleiner $T_N$, desto aggressiver integriert der Regler.],
-  [$T_V$], [**Vorhaltzeit:** Bestimmt das Gewicht des D-Anteils. Sie gibt an, wie stark der Regler auf die Änderungsgeschwindigkeit reagiert.],
-  [$T_D$], [**Verzögerungszeitkonstante (Filterzeit):** Macht den D-Anteil realisierbar, indem sie hochfrequentes Rauschen dämpft (Tiefpass).],
-  [$D$], [**Dämpfungsgrad:** Maß für das Schwingungsverhalten. \ ($D < 1$: schwingend, $D = 1$: aperiodischer Grenzfall, $D > 1$: kriechend)],
-  [$omega_n$], [**Ungedämpfte Eigenkreisfrequenz:** Frequenz, mit der das System ohne Dämpfung schwingen würde.],
-  [$s$], [**Laplace-Variable:** Komplexe Frequenz ($s = sigma + j omega$) zur Transformation vom Zeit- in den Bildbereich.],
-  [$F_S$, $F_R$, $F_0$], [**Übertragungsfunktionen** der Strecke, des Reglers und des offenen Kreises.],
-  [$W(s)$], [**Führungsgröße (Sollwert):** Das Signal, dem der Regelkreis folgen soll.],
-  [$Y(s)$], [**Stellgröße:** Das Ausgangssignal des Reglers, das auf die Strecke einwirkt.],
-  [$X_d(s)$], [**Regelabweichung (Regeldifferenz):** Differenz zwischen Soll- und Istwert ($W - X$).],
-  [$hat(w)$], [**Sprunghöhe:** Die Amplitude des Eingangssprungs ($hat(w) = 1$ für den Einheitssprung).]
+  [$K_P$], [*Proportionalbeiwert (Reglerverstärkung):* Bestimmt die Stärke des direkten, proportionalen Eingriffs.],
+  [$K_I$], [*Integrationsbeiwert:* Verstärkungsfaktor des I-Anteils.],
+  [$T_N$], [*Nachstellzeit:* Bestimmt das Gewicht des I-Anteils. Je kleiner $T_N$, desto aggressiver integriert der Regler.],
+  [$T_V$], [*Vorhaltzeit:* Bestimmt das Gewicht des D-Anteils. Sie gibt an, wie stark der Regler auf die Änderungsgeschwindigkeit reagiert.],
+  [$T_D$], [*Verzögerungszeitkonstante (Filterzeit):* Macht den D-Anteil realisierbar, indem sie hochfrequentes Rauschen dämpft (Tiefpass).],
+  [$D$], [*Dämpfungsgrad:* Maß für das Schwingungsverhalten. \ ($D < 1$: schwingend, $D = 1$: aperiodischer Grenzfall, $D > 1$: kriechend)],
+  [$omega_n$], [*Ungedämpfte Eigenkreisfrequenz:* Frequenz, mit der das System ohne Dämpfung schwingen würde.],
+  [$s$], [*Laplace-Variable:* Komplexe Frequenz ($s = sigma + j omega$) zur Transformation vom Zeit- in den Bildbereich.],
+  [$F_S$, $F_R$, $F_0$], [*Übertragungsfunktionen* der Strecke, des Reglers und des offenen Kreises.],
+  [$W(s)$], [*Führungsgröße (Sollwert):* Das Signal, dem der Regelkreis folgen soll.],
+  [$Y(s)$], [*Stellgröße:* Das Ausgangssignal des Reglers, das auf die Strecke einwirkt.],
+  [$X_d(s)$], [*Regelabweichung (Regeldifferenz):* Differenz zwischen Soll- und Istwert ($W - X$).],
+  [$hat(w)$], [*Sprunghöhe:* Die Amplitude des Eingangssprungs ($hat(w) = 1$ für den Einheitssprung).]
 )
 
 #set page(margin: 1cm, flipped: true)
