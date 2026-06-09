@@ -153,16 +153,36 @@ $d < 0$: instabiles System, nicht realisierbar!
 ]#pagebreak()
 == Grenzwerte (Standard-Regelkreis)
 
-*1. Führungseingang aktiv* ($W(s) ⊶ w(t)$, $Z(s) = 0$):
-#linebreak()
-$x_d (infinity) = lim_(s->0) [s dot (1 - F_W) dot W(s)]$
-#linebreak()
-$y(infinity) = (w(infinity)) / (F_S(s=0)) |_(x_d(infinity)=0) #linebreak() "Bei P/PD-Regler:" y(infinity) = K_p dot x_d(infinity)$
++ Grenzwerte Sätze:+
 
-*2. Störeingang aktiv* ($Z(s) = z(t)$, $W(s) = 0$):
-#linebreak()
-$x_d(infinity) = lim_(s->0) [s dot F_S / (1 + F_R F_S) dot Z(s)]$#linebreak()
-$x(infinity) = -x_d(infinity) = -lim_(s->0) [s dot F_S / (1 + F_R F_S) dot Z(s)]$ #linebreak()
+    Reminder: $bold(cal(L)(sigma(t)) = 1 / s)$
+
+  + *Endwertsatz*
+
+    $ lim_(t -> oo) f(t) = lim_(s -> 0) s * F(s) $
+    $ "Für Einheitssprung" ->  bold(lim_(t -> oo) f(t) = lim_(s -> 0) F(s)) $
+    *Voraussetzung:* Der Grenzwert im Zeitbereich muss existieren. 
+
+  + *Anfangswertsatz*
+    $ lim_(t -> 0^+) f(t) = lim_(s -> oo) s * F(s) $
+    $ "Für Einheitssprung" ->  bold(lim_(t -> 0^+) f(t) = lim_(s -> oo) F(s)) $
+    *Voraussetzung:* Der Grenzwert $\lim_{s \to oo} s F(s)$ muss existieren.
+
+
++ Führungseingang aktiv 
+  ($W(s) ⊶ w(t)$, $Z(s) = 0$):
+
+
+  $x_d (infinity) = lim_(s->0) [s dot (1 - F_W) dot W(s)]$
+
+  $y(infinity) = (w(infinity)) / (F_S(s=0)) |_(x_d(infinity)=0) #linebreak() "Bei P/PD-Regler:" y(infinity) = K_p dot x_d(infinity)$
+
++ Störeingang aktiv 
+  ($Z(s) = z(t)$, $W(s) = 0$):
+
+
+  $x_d(infinity) = lim_(s->0) [s dot F_S / (1 + F_R F_S) dot Z(s)]$#linebreak()
+  $x(infinity) = -x_d(infinity) = -lim_(s->0) [s dot F_S / (1 + F_R F_S) dot Z(s)]$ #linebreak()
 
 == Gutes Führungsverhalten:
 
@@ -186,7 +206,7 @@ $ T_"RK" = "größte Systemzeitkonstante" \/ "langsamste Polstelle" $
   [P-Regler], [$K_P$], [Macht das System schneller ($omega_0$ steigt), aber oft schwingender (Dämpfung $D$ sinkt).],
   [I-Regler], [$K_I / s$], [Beseitigt die bleibende Regelabweichung, macht das System aber träger und instabiler ($D$ sinkt stark).],
   [PI-Regler], [$K_P dot (1 + s dot T_N) / (s dot T_N)$], [Kombiniert P- und I-Vorteile. Erlaubt oft die Kompensation einer Streckenzeitkonstanten.],
-  [PD-Regler \ (real)], [$K_P dot (1 + T_V dot s) / (1 + T_D dot s)$], [Der D-Anteil bremst rechtzeitig ab. **Erhöht die Dämpfung $D$** und stabilisiert das System.],
+  [PD-Regler \ (real)], [$K_P dot (1 + T_V dot s) / (1 + T_D dot s)$], [Der D-Anteil bremst rechtzeitig ab. *Erhöht die Dämpfung $D$* und stabilisiert das System.],
   [PID-Regler \ (ideal)], [$K_P dot ((1 + T_N s) dot (1 + T_V s)) / (T_N dot s)$], [Alleskönner: Keine bleibende Abweichung (I), schnell (P) und gut gedämpft (D).],
   [PID-Regler \ (real / PIDT_D)], [$K_P dot ((1 + T_N s)(1 + T_V s)) / (T_N s (1 + T_D s))$], [Wie idealer PID, aber realisierbar durch Tiefpassfilterung ($T_D$) hoher Frequenzen.]
 )
