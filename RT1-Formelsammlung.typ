@@ -161,14 +161,15 @@ $d < 0$: instabiles System, nicht realisierbar!
 
   + *Endwertsatz*
 
-    $ lim_(t -> oo) f(t) = lim_(s -> 0) s * F(s) $
-    $ "Für Einheitssprung" ->  bold(lim_(t -> oo) f(t) = lim_(s -> 0) F(s)) $
+    $ lim_(t -> oo) f(t) = bold(lim_(s -> 0) s dot X(s)) = lim_(s -> 0) s dot F(s) dot Y(S) $
+    $ "Für Einheitssprung" ->  bold(lim_(t -> oo) f(t) = lim_(s -> 0) X(s)) $
     *Voraussetzung:* Der Grenzwert im Zeitbereich muss existieren. 
 
   + *Anfangswertsatz*
-    $ lim_(t -> 0^+) f(t) = lim_(s -> oo) s * F(s) $
-    $ "Für Einheitssprung" ->  bold(lim_(t -> 0^+) f(t) = lim_(s -> oo) F(s)) $
-    *Voraussetzung:* Der Grenzwert $\lim_{s \to oo} s F(s)$ muss existieren.
+
+    $ bold(lim_(t -> 0^+) f(t) = lim_(s -> oo) s dot X(s)) = lim_(s -> oo) s dot F(s) dot Y(S)$
+    $ "Für Einheitssprung" ->  bold(lim_(t -> 0^+) f(t) = lim_(s -> oo) X(s)) $
+    *Voraussetzung:* Der Grenzwert $ lim_{s -> oo} (s dot F(s))$ muss existieren.
 
 
 + Führungseingang aktiv 
