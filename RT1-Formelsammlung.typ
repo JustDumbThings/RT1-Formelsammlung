@@ -47,6 +47,8 @@ $ (d h(t)) / (d t) = 1 / A (Q_"zu"(t) - Q_"ab"(t)) $
 - *Dämpfungskraft*: $ F_D = D dot ((d x_e)/(d t) - (d x_a)/(d t) ) $
 
 *(Pfeil entgegen Zählrichtung Position ansetzen! -> Kräfte addieren für Kräftebilanz)*
+
+- *Linearität der Ableitung* $ d/(d x) (f(x) + g(x)) = d/(d x) (f(x)) + d/(d x) (g(x)) $
 == Rechnen mit BSB
 *Wichtig:* Alle Änderungen müssen so vollzogen werden, dass sich bei der Übertragungsfunktion nichts ändert! Schleifenverstärkung ändert sich auch nicht.
 
