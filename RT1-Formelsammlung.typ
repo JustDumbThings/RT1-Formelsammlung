@@ -31,11 +31,12 @@
 = DGL aufstellen und BSB zeichnen
 + (Physikalische) Grundgleichungen aufstellen
 + Nach der höchsten Ableitung auflösen
-+ Mit Integrierer BSB zeichnen:
-  $ integral (d x(t)) / (d t) d t = x(t) $
++ Beide Seiten integrieren (evtl. im Kopf)
++ Mit Integrierer BSB zeichnen
 
 *Beispiel Füllstand:*
-$ (d h(t)) / (d t) = 1 / A (Q_"zu"(t) - Q_"ab"(t)) $
+$ (d h(t)) / (d t) = 1 / A (Q_"zu" (t) - Q_"ab" (t)) $
+$ h(t) =  integral 1/A (Q_"zu" (t) - Q_"ab" (t))d t $
 
 #figure(image("media/image3.jpg", width: 50%), caption: [Blockschaltbild Füllstand])
 == Bauteil-Gleichungen & Kräfte
@@ -43,10 +44,10 @@ $ (d h(t)) / (d t) = 1 / A (Q_"zu"(t) - Q_"ab"(t)) $
 - *Kondensator:* $ i_c(t) = C dot (d u_c(t)) / (d t) $
 - *Gewichtskraft:* $ F_G = m dot g $
 - *Federkraft:* $ F_s = c dot Delta x = c(x_e - x_a) $
-- *Trägheitskraft:* $ F_T = m dot a = m dot (d^2 x(t)) / (d t^2) $
-- *Dämpfungskraft*: $ F_D = D dot ((d x_e)/(d t) - (d x_a)/(d t) ) $
+- *Trägheitskraft:* Pfeil entgegen der Zählrichtung Position ansetzen! $ F_T = m dot a = m dot (d^2 x(t)) / (d t^2) $
+- *Dämpfungskraft*: Pfeil entgegen der Zählrichtung Position ansetzen! $ F_D = D dot ((d x_e)/(d t) - (d x_a)/(d t) ) $
 
-*(Pfeil entgegen Zählrichtung Position ansetzen! -> Kräfte addieren für Kräftebilanz)*
+*-> Kräfte addieren für Kräftebilanz)*
 
 - *Linearität der Ableitung* $ d/(d x) (f(x) + g(x)) = d/(d x) (f(x)) + d/(d x) (g(x)) $
 == Rechnen mit BSB
@@ -111,7 +112,31 @@ align: (center, center),
   - Für Einheitssprungantwort $U_e(s) = 1 / s$ einsetzen.
 + *Mit Laplace-Tabelle rücktransformieren:*
   - Doppelbrüche beseitigen!
+  - Partialbruch Zerlegung:
+    - 1. Vorab-Check (Zählergrad vs. Nennergrad)\
+        Ist der höchste Exponent im Zähler größer oder gleich dem im Nenner? \
+        $=>$ *Polynomdivision* durchführen! Nur der echt gebrochen-rationale Rest wird danach zerlegt.
 
+    - 2. Nenner faktorisieren\
+        Alle Nullstellen des Nenners berechnen. Den Nenner anschließend komplett in Linearfaktoren (und ggf. irreduzible quadratische Terme) zerlegen.
+
+    - 3. Ansatz aufstellen\
+        Jeder Faktor im Nenner bekommt einen eigenen Bruch. Der Ansatz hängt von der Art der Nullstelle ab:
+        - *Einfache reelle Nullstelle* $x_1$:
+        $ A / (x - x_1) $
+
+        - *Mehrfache reelle Nullstelle* $x_1$ (z. B. $k$-fach):
+        $ A_1 / (x - x_1) + A_2 / (x - x_1)^2 + dots.h + A_k / (x - x_1)^k $
+
+        - *Irreduzibler quadratischer Term* (komplexe Nullstellen, $x^2 + p x + q$):
+        $ (A x + B) / (x^2 + p x + q) $
+
+        - *Mehrfacher quadratischer Term* (z. B. 2-fach):
+        $ (A_1 x + B_1) / (x^2 + p x + q) + (A_2 x + B_2) / (x^2 + p x + q)^2 $
+    - 4. Koeffizienten bestimmen ($A, B, C, dots$)\
+        Den kompletten Ansatz mit dem *Hauptnenner* durchmultiplizieren, sodass die Brüche verschwinden. Danach die Parameter lösen durch:
+        - *Einsetzmethode:* Die berechneten Nullstellen für $x$ einsetzen (sehr schnell bei einfachen reellen Nullstellen; auch "Zuhaltemethode" genannt).
+        - *Koeffizientenvergleich:* Die Gleichung ausmultiplizieren, nach Potenzen von $x$ ordnen und ein lineares Gleichungssystem aufstellen (notwendig bei komplexen und oft bei mehrfachen Nullstellen).
 == Differenzgrad Zähler / Nenner ($d$)
 $d < 0$: instabiles System, nicht realisierbar!
 
@@ -622,5 +647,49 @@ besitzt.
     [31], [$ e^(-a t) dot cos(omega_0 t) $], [$ (s + a) / ((s + a)^2 + omega_0^2) $],
     [32], [$ 1 / omega_e e^(-delta t) sin(omega_e t) $ \ _mit: $delta = D dot omega_0; D < 1; omega_e = omega_0 dot sqrt(1 - D^2)$_], [$ 1 / (omega_0^2 + 2 D omega_0 s + s^2) $],
     [33], [$ 1 - e^(-delta t) / omega_e (delta sin(omega_e t) + omega_e cos(omega_e t)) $ \ _Abkürzungen siehe Nr. 32; $D < 1$_], [$ omega_0^2 / (s dot (omega_0^2 + 2 D omega_0 s + s^2)) $]
+  )
+]
+
+
+= Laplace-Transformation: Rechenregeln
+
+#align(center)[
+  #table(
+    columns: (auto, 1fr, 1fr),
+    align: (center, left, left),
+    stroke: 0.5pt + luma(200),
+    fill: (col, row) => if row == 0 { luma(240) } else { none },
+    
+    // Kopfzeile
+    [*Regel*], [*Zeitfunktion $f(t)$*], [*Laplace-Transformierte $F(s)$*],
+    
+    // Sätze und Regeln
+    [Linearitätssatz], [$ a f_1(t) + b f_2(t) $], [$ a F_1(s) + b F_2(s) $],
+    
+    [Ähnlichkeitssatz \ _(Skalierung)_], [$ f(a t) quad (a > 0) $], [$ 1/a F(s/a) $],
+    
+    [Verschiebungssatz \ _(Totzeitsatz)_], [$ f(t - T_0) sigma(t - T_0) quad (T_0 > 0) $], [$ e^(-s T_0) F(s) $],
+    
+    [Dämpfungssatz \ _(Verschiebung Bildbereich)_], [$ e^(-a t) f(t) $], [$ F(s + a) $],
+    
+    [Differentiationssatz \ _(1. Ableitung)_], [$ f'(t) $], [$ s F(s) - f(0) $],
+    
+    [Differentiationssatz \ _(2. Ableitung)_], [$ f''(t) $], [$ s^2 F(s) - s f(0) - f'(0) $],
+    
+    [Differentiationssatz \ _(n-te Ableitung)_], [$ f^('(n))(t) $], [$ s^n F(s) - sum_(k=1)^n s^(n-k) f^((k-1))(0) $],
+    
+    [Integrationssatz \ _im Zeitbereich_], [$ integral_0^t f(tau) d tau $], [$ 1/s F(s) $],
+    
+    [Differentiationssatz \ _im Bildbereich_], [$ t f(t) $], [$ - d/(d s) F(s) $],
+    
+    [Differentiationssatz \ _im Bildbereich (n-fach)_], [$ t^n f(t) $], [$ (-1)^n d^n/(d s^n) F(s) $],
+    
+    [Integrationssatz \ _im Bildbereich_], [$ f(t)/t $], [$ integral_s^infinity F(sigma) d sigma $],
+    
+    [Faltungssatz], [$ f_1(t) ast f_2(t) = \ integral_0^t f_1(tau) f_2(t - tau) d tau $], [$ F_1(s) dot F_2(s) $],
+    
+    [Grenzwertsatz \ _(Anfangswert)_], [$ lim_(t -> 0) f(t) $], [$ lim_(s -> infinity) s F(s) $],
+    
+    [Grenzwertsatz \ _(Endwert)_], [$ lim_(t -> infinity) f(t) $ \ _(sofern Grenzwert existiert)_], [$ lim_(s -> 0) s F(s) $]
   )
 ]
