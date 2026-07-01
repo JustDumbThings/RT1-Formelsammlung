@@ -646,7 +646,10 @@ besitzt.
     [30], [$ e^(-a t) dot sin(omega_0 t) $], [$ omega_0 / ((s + a)^2 + omega_0^2) $],
     [31], [$ e^(-a t) dot cos(omega_0 t) $], [$ (s + a) / ((s + a)^2 + omega_0^2) $],
     [32], [$ 1 / omega_e e^(-delta t) sin(omega_e t) $ \ _mit: $delta = D dot omega_0; D < 1; omega_e = omega_0 dot sqrt(1 - D^2)$_], [$ 1 / (omega_0^2 + 2 D omega_0 s + s^2) $],
-    [33], [$ 1 - e^(-delta t) / omega_e (delta sin(omega_e t) + omega_e cos(omega_e t)) $ \ _Abkürzungen siehe Nr. 32; $D < 1$_], [$ omega_0^2 / (s dot (omega_0^2 + 2 D omega_0 s + s^2)) $]
+    [33], [$ 1 - e^(-delta t) / omega_e (delta sin(omega_e t) + omega_e cos(omega_e t)) $ \ _Abkürzungen siehe Nr. 32; $D < 1$_], [$ omega_0^2 / (s dot (omega_0^2 + 2 D omega_0 s + s^2)) $],
+    // Ergänzungen aus der SUS Formelsammlung (Nr. 34 - 35)
+    [34], [$ 1 / sqrt(D) e^(-1/2 a_1 t) \ dot (- a_1 / 2 sinh(sqrt(D) t) + sqrt(D) cosh(sqrt(D) t)) $ \ $D > 0$], [$ s / (s^2 + a_1 s + a_0) $ \ $D = 1/4 a_1^2 - a_0$],
+    [35], [$ 1 / sqrt(-D) e^(-1/2 a_1 t) \ dot (- a_1 / 2 sin(sqrt(-D) t) + sqrt(-D) cos(sqrt(-D) t)) $ \ $D < 0$], [$ s / (s^2 + a_1 s + a_0) $ \ $D = 1/4 a_1^2 - a_0$]
   )
 ]
 
