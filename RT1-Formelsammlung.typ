@@ -598,7 +598,6 @@ Immer anwendbar auf Üfkt des offenen Rk ($F_R F_S$)!
 $ Delta phi_"Stabil" = (n_p + n_i / 2) * pi $
 besitzt.
 #pagebreak()
-
 = Laplace-Transformationstabelle 
 
 #align(center)[
@@ -609,47 +608,82 @@ besitzt.
     fill: (col, row) => if row == 0 { luma(240) } else { none },
     
     // Kopfzeile
-    [*Nr.*], [*Zeitfunktion $f(t)$*], [*Laplace-Transformierte $F(s)$*],
+    [*Nr.*], [*Originalfunktion $u(t >= 0)$*], [*Bildfunktion $U_L(p)$*],
     
-    // Bild 1 (Nr. 1 - 18)
-    [1], [$ delta("Impuls") delta(t) $], [$ 1 $],
-    [2], [$ "Sprungfunktion" sigma(t) $], [$ 1 / s $],
-    [3], [$ t $], [$ 1 / s^2 $],
-    [4], [$ t^2 $], [$ 2 / s^3 $],
-    [5], [$ t^3 $], [$ 6 / s^4 $],
-    [6], [$ t^n $], [$ (n!) / s^(n+1) $],
-    [7], [$ e^(-a t) $], [$ 1 / (s + a) $],
-    [8], [$ t dot e^(-a t) $], [$ 1 / (s + a)^2 $],
-    [9], [$ t^2 dot e^(-a t) $], [$ 2 / (s + a)^3 $],
-    [10], [$ (t - (a t^2) / 2) dot e^(-a t) $], [$ s / (s + a)^3 $],
-    [11], [$ (1 - 2 a t + ((a t)^2) / 2) dot e^(-a t) $], [$ s^2 / (s + a)^3 $],
-    [12], [$ t^n dot e^(-a t) $], [$ (n!) / (s + a)^(n+1) $],
-    [13], [$ 1 - e^(-a t) $], [$ a / (s dot (s + a)) $],
-    [14], [$ e^(-a t) - e^(-b t) $], [$ (b - a) / ((s + a)(s + b)) $],
-    [15], [$ a e^(-a t) - b e^(-b t) $], [$ ((a - b) dot s) / ((s + a)(s + b)) $],
-    [16], [$ 1 + (b e^(-a t) - a e^(-b t)) / (a - b) $], [$ (a dot b) / (s dot (s + a)(s + b)) $],
-    [17], [$ 1 - (1 + a t) dot e^(-a t) $], [$ a^2 / (s dot (s + a)^2) $],
-    [18], [$ a t - 1 + e^(-a t) $], [$ a^2 / (s^2 dot (s + a)) $],
+    // --- Bild 1 ---
+    [1], [$ delta(t) $], [$ 1 $],
+    [2], [$ sigma(t), 1 $], [$ 1 / p $],
+    [3], [$ e^(-a t) $], [$ 1 / (p + a) $],
+    [4], [$ 1/a e^(-t/a) $], [$ 1 / (a p + 1) $],
+    [5], [$ t $], [$ 1 / p^2 $],
+    [6], [$ sin(a t) $], [$ a / (p^2 + a^2) $],
+    [7], [$ sinh(a t) $], [$ a / (p^2 - a^2) $],
+    [8], [$ b cos(a t) + c/a sin(a t) $], [$ (b p + c) / (p^2 + a^2) $],
+    [9], [$ sin(a t + b) $], [$ (p sin(b) + a cos(b)) / (p^2 + a^2) $],
+    [10], [$ cos(a t + b) $], [$ (p cos(b) - a sin(b)) / (p^2 + a^2) $],
+    [11], [$ sinh(a t + b) $], [$ (p sinh(b) + a cosh(b)) / (p^2 - a^2) $],
+    [12], [$ cosh(a t + b) $], [$ (p cosh(b) + a sinh(b)) / (p^2 - a^2) $],
+    [13], [$ t e^(a t) $], [$ 1 / (p - a)^2 $],
+    [14], [$ 1/a (e^(a t) - 1) $], [$ 1 / (p(p - a)) $],
+    [15], [$ 1 - e^(-t/a) $], [$ 1 / (p(a p + 1)) $],
+    [16], [$ 1/a^2 t e^(-t/a) $], [$ 1 / (a p + 1)^2 $],
+    [17], [$ (e^(a t) - e^(b t)) / (a - b) $], [$ 1 / ((p - a)(p - b)) $],
+    [18], [$ (e^(-t/a) - e^(-t/b)) / (a - b) $], [$ 1 / ((a p + 1)(b p + 1)) $],
     
-    // Bild 2 (Nr. 19 - 33)
-    [19], [#text(size: 10pt)[$ e^(-a t) / ((b - a)(c - a)) + e^(-b t) / ((c - b)(a - b)) + e^(-c t) / ((a - c)(b - c)) $]], [$ 1 / ((s + a)(s + b)(s + c)) $],
-    [20], [#text(size: 8pt)[$ 1 / (a b c) { 1 - [ (b c dot e^(-a t)) / ((b - a)(c - a)) - (c a dot e^(-b t)) / ((c - b)(a - b)) - (a b dot e^(-c t)) / ((a - c)(b - c)) ] } $]], [$ 1 / (s (s + a)(s + b)(s + c)) $],
-    [21], [$ sin(omega_0 t) $], [$ omega_0 / (s^2 + omega_0^2) $],
-    [22], [$ cos(omega_0 t) $], [$ s / (s^2 + omega_0^2) $],
-    [23], [$ sin(omega_0 t + phi) $], [$ (s sin(phi) + omega_0 cos(phi)) / (s^2 + omega_0^2) $],
-    [24], [$ 1 - cos(omega_0 t) $], [$ omega_0^2 / (s dot (s^2 + omega_0^2)) $],
-    [25], [$ 1 / 2 t sin(omega_0 t) $], [$ (omega_0 dot s) / (s^2 + omega_0^2)^2 $],
-    [26], [$ 1 / 2 (sin(omega_0 t) - omega_0 t dot cos(omega_0 t)) $], [$ omega_0^3 / (s^2 + omega_0^2)^2 $],
-    [27], [$ 1 / 2 (sin(omega_0 t) + omega_0 t dot cos(omega_0 t)) $], [$ (omega_0 dot s^2) / (s^2 + omega_0^2)^2 $],
-    [28], [$ sin^2(omega_0 t) $], [$ (2 omega_0^2) / (s dot (s^2 + 4 omega_0^2)) $],
-    [29], [$ cos^2(omega_0 t) $], [$ (s^2 + 2 omega_0^2) / (s dot (s^2 + 4 omega_0^2)) $],
-    [30], [$ e^(-a t) dot sin(omega_0 t) $], [$ omega_0 / ((s + a)^2 + omega_0^2) $],
-    [31], [$ e^(-a t) dot cos(omega_0 t) $], [$ (s + a) / ((s + a)^2 + omega_0^2) $],
-    [32], [$ 1 / omega_e e^(-delta t) sin(omega_e t) $ \ _mit: $delta = D dot omega_0; D < 1; omega_e = omega_0 dot sqrt(1 - D^2)$_], [$ 1 / (omega_0^2 + 2 D omega_0 s + s^2) $],
-    [33], [$ 1 - e^(-delta t) / omega_e (delta sin(omega_e t) + omega_e cos(omega_e t)) $ \ _Abkürzungen siehe Nr. 32; $D < 1$_], [$ omega_0^2 / (s dot (omega_0^2 + 2 D omega_0 s + s^2)) $],
-    // Ergänzungen aus der SUS Formelsammlung (Nr. 34 - 35)
-    [34], [$ 1 / sqrt(D) e^(-1/2 a_1 t) \ dot (- a_1 / 2 sinh(sqrt(D) t) + sqrt(D) cosh(sqrt(D) t)) $ \ $D > 0$], [$ s / (s^2 + a_1 s + a_0) $ \ $D = 1/4 a_1^2 - a_0$],
-    [35], [$ 1 / sqrt(-D) e^(-1/2 a_1 t) \ dot (- a_1 / 2 sin(sqrt(-D) t) + sqrt(-D) cos(sqrt(-D) t)) $ \ $D < 0$], [$ s / (s^2 + a_1 s + a_0) $ \ $D = 1/4 a_1^2 - a_0$]
+    // --- Bild 2 ---
+    [19], [$ 1/sqrt(D) e^(-1/2 a_1 t) sinh(sqrt(D) t) $ \ $D > 0$], [$ 1 / (p^2 + a_1 p + a_0) $ \ $D = 1/4 a_1^2 - a_0$],
+    [20], [$ 1/sqrt(-D) e^(-1/2 a_1 t) sin(sqrt(-D) t) $ \ $D < 0$], [$ 1 / (p^2 + a_1 p + a_0) $ \ $D = 1/4 a_1^2 - a_0$],
+    [21], [$ e^(a t) sin(b t) $], [$ b / ((p - a)^2 + b^2) $],
+    [22], [$ e^(a t) sinh(b t) $], [$ b / ((p - a)^2 - b^2) $],
+    [23], [$ cos(a t) $], [$ p / (p^2 + a^2) $],
+    [24], [$ cosh(a t) $], [$ p / (p^2 - a^2) $],
+    [25], [$ (1 + a t) e^(a t) $], [$ p / (p - a)^2 $],
+    [26], [$ 1/sqrt(D) e^(-1/2 a_1 t) \ dot (- a_1/2 sinh(sqrt(D) t) + sqrt(D) cosh(sqrt(D) t)) $ \ $D > 0$], [$ p / (p^2 + a_1 p + a_0) $ \ $D = 1/4 a_1^2 - a_0$],
+    [27], [$ 1/sqrt(-D) e^(-1/2 a_1 t) \ dot (- a_1/2 sin(sqrt(-D) t) + sqrt(-D) cos(sqrt(-D) t)) $ \ $D < 0$], [$ p / (p^2 + a_1 p + a_0) $ \ $D = 1/4 a_1^2 - a_0$],
+    [28], [$ (a e^(a t) - b e^(b t)) / (a - b) quad | a != b $], [$ p / ((p - a)(p - b)) = p / (p^2 - (a + b)p + a b) $],
+    [29], [$ e^(a t) cos(b t) $], [$ (p - a) / ((p - a)^2 + b^2) $],
+    [30], [$ e^(a t) cosh(b t) $], [$ (p - a) / ((p - a)^2 - b^2) $],
+    [31], [$ - c/a + (b + c/a) e^(a t) $], [$ (b p + c) / (p(p - a)) $],
+    [32], [$ (alpha + (beta + alpha a)t) e^(a t) $], [$ (alpha p + beta) / (p - a)^2 = (alpha p + beta) / (p^2 - 2 a p + a^2) $],
+    [33], [$ ((alpha a + beta) e^(a t) - (alpha b + beta) e^(b t)) / (a - b) quad | a != b $], [$ (alpha p + beta) / ((p - a)(p - b)) = (alpha p + beta) / (p^2 - (a + b)p + a b) $],
+    
+    // --- Bild 3 ---
+    [34], [$ 1/a^2 (e^(a t) - a t - 1) $], [$ 1 / (p^2 (p - a)) $],
+    [35], [$ 1/a^2 (1 + (a t - 1) e^(a t)) $], [$ 1 / (p (p - a)^2) $],
+    [36], [$ t sin(a t) $], [$ (2 a p) / (p^2 + a^2)^2 $],
+    [37], [$ t cos(a t) $], [$ (p^2 - a^2) / (p^2 + a^2)^2 $],
+    [38], [$ t^n quad n in NN $], [$ n! / p^(n+1) $],
+    [39], [$ t^n e^(a t) quad n in NN $], [$ n! / (p - a)^(n+1) $],
+    [40], [$ t^n sin(a t) quad | n in NN $], [$ (j n!) / 2 ( 1 / (p + j a)^(n+1) - 1 / (p - j a)^(n+1) ) $],
+    [41], [$ t^n cos(a t) quad | n in NN $], [$ n! / 2 ( 1 / (p + j a)^(n+1) + 1 / (p - j a)^(n+1) ) $],
+    [42], [$ a e^(a t) + delta(t) $], [$ p / (p - a) $],
+    [\_], [Bis hier aus der SUS-Formelsammlung], [\_],
+    // --- Aus der ursprünglichen Tabelle ergänzt (nicht exakt in Bildern enthalten) ---
+    [43], [$ t^2 $], [$ 2 / p^3 $],
+    [44], [$ t^3 $], [$ 6 / p^4 $],
+    [45], [$ t dot e^(-a t) $], [$ 1 / (p + a)^2 $],
+    [46], [$ t^2 dot e^(-a t) $], [$ 2 / (p + a)^3 $],
+    [47], [$ (t - (a t^2) / 2) dot e^(-a t) $], [$ p / (p + a)^3 $],
+    [48], [$ (1 - 2 a t + ((a t)^2) / 2) dot e^(-a t) $], [$ p^2 / (p + a)^3 $],
+    [49], [$ t^n dot e^(-a t) $], [$ (n!) / (p + a)^(n+1) $],
+    [50], [$ 1 - e^(-a t) $], [$ a / (p dot (p + a)) $],
+    [51], [$ e^(-a t) - e^(-b t) $], [$ (b - a) / ((p + a)(p + b)) $],
+    [52], [$ a e^(-a t) - b e^(-b t) $], [$ ((a - b) dot p) / ((p + a)(p + b)) $],
+    [53], [$ 1 + (b e^(-a t) - a e^(-b t)) / (a - b) $], [$ (a dot b) / (p dot (p + a)(p + b)) $],
+    [54], [$ 1 - (1 + a t) dot e^(-a t) $], [$ a^2 / (p dot (p + a)^2) $],
+    [55], [$ a t - 1 + e^(-a t) $], [$ a^2 / (p^2 dot (p + a)) $],
+    [56], [#text(size: 10pt)[$ e^(-a t) / ((b - a)(c - a)) + e^(-b t) / ((c - b)(a - b)) + e^(-c t) / ((a - c)(b - c)) $]], [$ 1 / ((p + a)(p + b)(p + c)) $],
+    [57], [#text(size: 8pt)[$ 1 / (a b c) { 1 - [ (b c dot e^(-a t)) / ((b - a)(c - a)) - (c a dot e^(-b t)) / ((c - b)(a - b)) - (a b dot e^(-c t)) / ((a - c)(b - c)) ] } $]], [$ 1 / (p (p + a)(p + b)(p + c)) $],
+    [58], [$ 1 - cos(omega_0 t) $], [$ omega_0^2 / (p dot (p^2 + omega_0^2)) $],
+    [59], [$ 1 / 2 t sin(omega_0 t) $], [$ (omega_0 dot p) / (p^2 + omega_0^2)^2 $],
+    [60], [$ 1 / 2 (sin(omega_0 t) - omega_0 t dot cos(omega_0 t)) $], [$ omega_0^3 / (p^2 + omega_0^2)^2 $],
+    [61], [$ 1 / 2 (sin(omega_0 t) + omega_0 t dot cos(omega_0 t)) $], [$ (omega_0 dot p^2) / (p^2 + omega_0^2)^2 $],
+    [62], [$ sin^2(omega_0 t) $], [$ (2 omega_0^2) / (p dot (p^2 + 4 omega_0^2)) $],
+    [63], [$ cos^2(omega_0 t) $], [$ (p^2 + 2 omega_0^2) / (p dot (p^2 + 4 omega_0^2)) $],
+    [64], [$ e^(-a t) dot sin(omega_0 t) $], [$ omega_0 / ((p + a)^2 + omega_0^2) $],
+    [65], [$ e^(-a t) dot cos(omega_0 t) $], [$ (p + a) / ((p + a)^2 + omega_0^2) $],
+    [66], [$ 1 / omega_e e^(-delta t) sin(omega_e t) $ \ _mit: $delta = D dot omega_0; D < 1; omega_e = omega_0 dot sqrt(1 - D^2)$_], [$ 1 / (omega_0^2 + 2 D omega_0 p + p^2) $],
+    [67], [$ 1 - e^(-delta t) / omega_e (delta sin(omega_e t) + omega_e cos(omega_e t)) $ \ _Abkürzungen siehe Nr. 66; $D < 1$_], [$ omega_0^2 / (p dot (omega_0^2 + 2 D omega_0 p + p^2)) $]
   )
 ]
 
