@@ -25,6 +25,8 @@
 
 #let laplace = "⊶"
 
+#text(size: 20pt)[Formelsammlung Regelungstechnik (Graf)]
+
 #outline()
 #pagebreak()
 
@@ -112,7 +114,7 @@ align: (center, center),
   - Für Einheitssprungantwort $U_e(s) = 1 / s$ einsetzen.
 + *Mit Laplace-Tabelle rücktransformieren:*
   - Doppelbrüche beseitigen!
-  - Partialbruch Zerlegung:
+  - *Partialbruch Zerlegung:*
     - 1. Vorab-Check (Zählergrad vs. Nennergrad)\
         Ist der höchste Exponent im Zähler größer oder gleich dem im Nenner? \
         $=>$ *Polynomdivision* durchführen! Nur der echt gebrochen-rationale Rest wird danach zerlegt.
