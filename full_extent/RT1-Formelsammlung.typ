@@ -452,7 +452,7 @@ $ F_W(s) = 1 / (1 + T_1 / (K_p K_S) s) $
     [$P T_1$+PI-Regler], [kein Schwingen, keine bleibende Regeldifferenz], image("media/image30.jpg", width: 80%)
 )
 
-#v(1em)
+#pagebreak()
 == Regelung $P T_2$
 === Regelung $P T_2$ mit PI-Regler: 
 Übertragungsfunktion für offenen Regelkreis $F_O(s)$:
@@ -465,14 +465,14 @@ Abklingkonstante: $2 * D * omega_0 = 1/T_2$
 
 
 
-#underline[Regelung $P T_2$ mit realem PD-Regler:] \
+*Regelung $P T_2$ mit realem PD-Regler:* \
 Übertragungsfunktion für offenen Regelkreis $F_O(s)$:
 $ F_O(s) = K_p * (1 + T_V s) / (1 + T_D s) * K_S / ((1 + T_1 s)(1 + T_2 s)) quad text("mit ") T_V = T_1 > T_2 $
 dynamische Kompensation der *größten* Streckenzeitkonstante! \
 Abklingkonstante: $2 * D * omega_0 = 1/T_2 + 1/T_D$ (schneller und besser als PI)
 
 #v(1em)
-#underline[Regelung $P T_2$ mit idealem PID-Regler:] \
+*Regelung $P T_2$ mit idealem PID-Regler:* \
 Übertragungsfunktion für offenen Regelkreis $F_O(s)$:
 $ F_O(s) = K_p * ((1 + T_N s)(1 + T_V s)) / (T_N s) * K_S / ((1 + T_1 s)(1 + T_2 s)) quad text("mit ") T_N = T_1, T_V = T_2 $
 dynamische Kompensation *beider* Streckenzeitkonstanten! $=> F_O(s) = (K_p K_S) / (T_N s)$ \
@@ -518,7 +518,7 @@ $=>$ I-Regler bei I-Strecken neigen zu Instabilität \
 *D-Anteil:* sorgt für schnelleres und stabilisierendes Verhalten, verstärkt aber das Messrauschen und führt zu großen Stellsignalen. \
 *Grundsätzlich* muss $K_P$ als Kompromiss zws. Schnelligkeit und Dämpfung gewählt werden.
 
-
+#pagebreak()
 #important[
   *Der Analoge PI-Regler (Op-Amp):*
   
@@ -556,6 +556,8 @@ Die Komponenten der Matrizen kommen direkt aus der char. Gl.!
 
 #v(2em)
 
+#pagebreak()
+
 // ==========================================
 // Nyquist-Kriterien
 // ==========================================
@@ -564,25 +566,34 @@ Die Komponenten der Matrizen kommen direkt aus der char. Gl.!
 *Grafisches* Verfahren! *Nur* für *stabile offene* Rk \
 (wenn alle Pole des offenen Rk ($F_S F_R$) auf linker p-Halbebene liegen, höchstens Doppelpol im Ursprung)
 
-#v(1em)
+
 #image("media/image41.jpg", width: 40%)
 *Stabil*, wenn Punkt *-1* beim *"Abfahren"* der Ortskurve *immer auf der linken* Seite liegt!
  
-#v(1.5em)
-#text(size: 11pt, weight: "bold")[Amplituden- und Phasenrand:]
-#image("media/image40.jpg", width: 40%)
 
-*Amplitudenrand* $A_"rand"$: Bei $omega_"krit"$ ist $F_o(j omega_"krit") = (-1) / A_"rand"$ 
+#text(size: 12pt, weight: "bold")[Amplituden- und Phasenrand:]
+#image("media/image40.jpg", width: 60%)
 
+
+*Amplitudenrand* $A_"rand"$: Von $0$ bis zum Schnittpunkt mit der negativen reellen Achse: \
+
+$ A_"Rand" = 1 / abs(F_0(omega_"kritisch")) $
+
+    - *$omega_"kritisch"$ :* $s = (j omega)$ in char. Gl. einsetzen, Imaginärteil gleich 0 setzen, nach $omega$ auflösen!
+    
 *Phasenrand* $phi_"rand"$: Bei $omega_D$ (Durchtrittsfrequenz) ist $|F_o(j omega_D)| = 1$ 
+$ phi_"Rand" = "arg"(F_0(j omega_"D")) + pi $
+$ phi_"Rand" = T_"max" dot omega_D approx (D dot 100° dot pi)/(180°)  => T_"max" "maximale Totzeit mit stabilem System" $ 
 
-*Kritische Verstärkung:* $K_(P_"Krit") = A_"rand" * K_p <=> A_"rand" = K_(P_"Krit") / K_p$
 
-#v(1em)
-* $omega_"krit"$ berechnen: $s = (j omega)$ in char. Gl. einsetzen, Imaginärteil gleich 0 setzen, nach $omega$ auflösen!
-* $K_(P_"Krit")$ berechnen: $s = (j omega)$ in char. Gl. einsetzen, *Realteil* gleich 0 setzen, $omega = omega_"Krit"$ einsetzen, nach $K_p$ auflösen!
+*Kritische Verstärkung:* $K_(P_"kritisch") = A_"rand" * K_p <=> A_"rand" = K_(P_"kritisch") / K_p$
 
-#v(2em)
+  - *$K_(P_"kritisch")$:* $s = (j omega)$ in char. Gl. einsetzen, *Realteil* gleich 0 setzen, $omega = omega_"kritisch"$ einsetzen, nach $K_p$ auflösen!
+
+
+
+
+#pagebreak()
 === Verallgemeinertes Nyquist-Kriterium
 Immer anwendbar auf Üfkt des offenen Rk ($F_R F_S$)!
 
@@ -599,6 +610,7 @@ Immer anwendbar auf Üfkt des offenen Rk ($F_R F_S$)!
 *Kriterium:* Geschlossener RK ist *stabil*, wenn Phasendrehung $Delta phi_"Mess"$ von $F_o(j omega)$ bezüglich des Punktes -1 für $omega = 0 ... oo$ den Wert
 $ Delta phi_"Stabil" = (n_p + n_i / 2) * pi $
 besitzt.
+
 #pagebreak()
 = Laplace-Transformationstabelle 
 
